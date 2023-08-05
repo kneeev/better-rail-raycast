@@ -1,6 +1,5 @@
 import { differenceInMilliseconds, format, formatDuration, intervalToDuration, isWithinInterval, parse } from "date-fns"
 import { formatInTimeZone } from "date-fns-tz"
-import { dateDelimiter, dateFnsLocalization } from "../../i18n"
 
 /**
  * Parses a string date as formatted in the Israel Rail API.
@@ -38,11 +37,6 @@ export function isOneHourDifference(date1: number, date2: number) {
 
 export function routeDurationInMs(departureTime: number, arrivalTime: number) {
   return differenceInMilliseconds(arrivalTime, departureTime)
-}
-
-export function formatRouteDuration(durationInMilliseconds: number) {
-  const durationObject = intervalToDuration({ start: 0, end: durationInMilliseconds }) // Create a date-fns duration object
-  return formatDuration(durationObject, { delimiter: dateDelimiter, locale: dateFnsLocalization }) // Format the duration
 }
 
 // Sometimes we need to ensure that the date is in the correct timezone.

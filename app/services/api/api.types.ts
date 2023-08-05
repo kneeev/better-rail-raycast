@@ -73,7 +73,7 @@ export type Train = {
 export type RouteItem = {
   delay: number
   isExchange: boolean
-  duration: string
+  duration: number
   departureTime: number
   departureTimeString: String
   arrivalTime: number

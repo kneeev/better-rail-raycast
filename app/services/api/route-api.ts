@@ -2,7 +2,7 @@ import { railApi } from "./api"
 import { AxiosResponse } from "axios"
 import { stationsObject, stationLocale } from "../../data/stations"
 import { RailApiGetRoutesResult } from "./api.types"
-import { formatRouteDuration, isOneHourDifference, routeDurationInMs } from "../../utils/helpers/date-helpers"
+import { isOneHourDifference, routeDurationInMs } from "../../utils/helpers/date-helpers"
 import { RouteItem } from "."
 import { getHours, parse, isSameDay, addDays } from "date-fns"
 
@@ -90,7 +90,7 @@ export class RouteApi {
           departureTimeString: route.departureTime,
           arrivalTimeString: route.arrivalTime,
           delay: trains?.[0].delay ?? 0,
-          duration: formatRouteDuration(routeDurationInMs(departureTime, arrivalTime)),
+          duration: routeDurationInMs(departureTime, arrivalTime),
           isExchange: trains.length > 1,
         }
       })
