@@ -1,252 +1,41 @@
 {
+  "author": "NivGovrin",
+  "license": "MIT",
+  "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "better-rail",
+  "title": "Better Rail",
+  "icon": "app-icon.png",
+  "description": "Display real-time train route data",
   "version": "0.0.1",
   "private": true,
+  "commands": [
+    {
+      "name": "index",
+      "title": "Better Rail",
+      "description": "Template for showing a static list and a detail view",
+      "mode": "view"
+    }
+  ],
   "scripts": {
-    "start": "react-native start",
-    "ios": "react-native run-ios",
-    "android": "react-native run-android",
-    "test:e2e": "detox test -c ios.sim.debug",
-    "build:e2e": "detox build -c ios.sim.debug",
-    "ci:test:e2e": "detox test -c ios.sim.release -l verbose --cleanup",
-    "ci:build:e2e": "detox build -c ios.sim.release",
-    "compile": "tsc --noEmit -p . --pretty",
-    "format": "npm-run-all format:*",
-    "format:js": "prettier --write \"**/*.js\"",
-    "format:json": "prettier --write \"**/*.json\"",
-    "format:md": "prettier --write \"**/*.md\"",
-    "format:ts": "prettier --write \"**/*.ts{,x}\"",
-    "lint": "eslint index.js app storybook test --fix --ext .js,.ts,.tsx && yarn format",
-    "storybook": "start-storybook -p 9001 -c ./storybook",
-    "test": "jest",
-    "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081",
-    "postinstall": "patch-package; node ./bin/postInstall;",
-    "build-ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
-    "build-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
-    "rename-dev-configs": "cp ios/GoogleService-Info.development.plist ios/GoogleService-Info.plist; cp android/app/google-services.development.json android/app/google-services.json"
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "npx @raycast/api@latest publish"
   },
   "dependencies": {
-    "@expo/react-native-action-sheet": "4.0.1",
-    "@gorhom/bottom-sheet": "^4",
-    "@react-native-async-storage/async-storage": "1.18.1",
-    "@react-native-community/blur": "^4.3.2",
-    "@react-native-community/datetimepicker": "6.7.3",
-    "@react-native-community/netinfo": "9.3.7",
-    "@react-native-firebase/analytics": "^17.5.0",
-    "@react-native-firebase/app": "^17.5.0",
-    "@react-native-firebase/auth": "^17.5.0",
-    "@react-native-firebase/crashlytics": "^17.5.0",
-    "@react-native-masked-view/masked-view": "0.2.8",
-    "@react-native-segmented-control/segmented-control": "2.4.0",
-    "@react-navigation/elements": "^1.3.17",
-    "@react-navigation/native": "6.1.6",
-    "@react-navigation/native-stack": "^6.9.12",
-    "@react-navigation/stack": "6.3.16",
-    "@shopify/flash-list": "^1.4.3",
-    "axios": "^1.4.0",
-    "burnt": "^0.11.4",
-    "date-fns": "2.30.0",
-    "date-fns-tz": "^2.0.0",
-    "expo": "48.0.10",
-    "expo-localization": "~14.1.1",
-    "fuse.js": "^6.4.6",
-    "i18n-js": "3.8.0",
-    "lodash": "^4.17.21",
-    "mobx": "6.3.2",
-    "mobx-react-lite": "3.4.3",
-    "mobx-state-tree": "5.1.8",
-    "ramda": "0.27.1",
-    "react": "18.2.0",
-    "react-native": "0.71.7",
-    "react-native-add-calendar-event": "^4.2.2",
-    "react-native-bouncy-checkbox": "^3.0.7",
-    "react-native-date-picker": "4.2.10",
-    "react-native-device-info": "10.6.0",
-    "react-native-gesture-handler": "~2.9.0",
-    "react-native-haptic-feedback": "2.0.3",
-    "react-native-iap": "^12.10.5",
-    "react-native-in-app-review": "4.3.3",
-    "react-native-inappbrowser-reborn": "^3.5.1",
-    "react-native-ios-context-menu": "1.15.3",
-    "react-native-linear-gradient": "^2.5.6",
-    "react-native-material-tabs": "^4.2.0",
-    "react-native-modal": "13.0.1",
-    "react-native-modal-datetime-picker": "9.2.1",
-    "react-native-prompt-android": "^1.1.0",
-    "react-native-reanimated": "2.14.4",
-    "react-native-restart": "0.0.27",
-    "react-native-safe-area-context": "4.5.0",
-    "react-native-screens": "~3.20.0",
-    "react-native-share": "8.2.2",
-    "react-native-shared-element": "^0.8.8",
-    "react-native-svg": "13.4.0",
-    "react-native-touchable-scale": "2.2.0",
-    "react-native-video": "^6.0.0-alpha.6",
-    "react-native-watch-connectivity": "1.1.0",
-    "react-navigation-shared-element": "3.1.3",
-    "react-query": "3.39.3",
-    "reactotron-mst": "3.1.3",
-    "reactotron-react-native": "5.0.0"
+    "@raycast/api": "^1.56.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@babel/plugin-proposal-decorators": "7.21.0",
-    "@babel/plugin-proposal-optional-catch-binding": "7.18.6",
-    "@babel/preset-env": "^7.20.0",
-    "@babel/runtime": "^7.20.0",
-    "@storybook/addon-storyshots": "7.0.3",
-    "@storybook/react-native": "5.3.23",
-    "@storybook/react-native-server": "5.3.23",
-    "@types/i18n-js": "3.0.3",
-    "@types/jest": "^29.2.1",
-    "@types/lodash": "^4.14.194",
-    "@types/ramda": "0.27.32",
-    "@types/react": "~18.0.27",
-    "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "5.58.0",
-    "@typescript-eslint/parser": "5.58.0",
-    "babel-jest": "29.2.1",
-    "babel-loader": "9.1.2",
-    "bufferutil": "4.0.2",
-    "detox": "20.7.0",
-    "eslint": "8.19.0",
-    "eslint-config-prettier": "7.0.0",
-    "eslint-config-standard": "16.0.2",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "7.21.5",
-    "eslint-plugin-react-native": "3.10.0",
-    "jest": "^29.2.1",
-    "jest-circus": "25.5.4",
-    "jest-expo": "^48.0.0",
-    "jetifier": "1.6.6",
-    "metro-react-native-babel-preset": "0.73.9",
-    "mocha": "8.2.1",
-    "npm-run-all": "4.1.5",
-    "patch-package": "6.2.2",
-    "postinstall-prepare": "1.0.1",
-    "prettier": "2.4.1",
-    "react-devtools-core": "4.10.1",
-    "react-dom": "18.2.0",
-    "react-native-console-time-polyfill": "^1.2.3",
-    "react-native-web": "~0.18.11",
-    "react-powerplug": "1.0.0",
-    "react-test-renderer": "18.2.0",
-    "rimraf": "3.0.2",
-    "solidarity": "2.3.1",
-    "typescript": "^4.9.4",
-    "utf-8-validate": "5.0.3"
-  },
-  "expo": {
-    "autolinking": {
-      "exclude": [
-        "expo-application",
-        "expo-asset",
-        "expo-constants",
-        "expo-file-system",
-        "expo-font",
-        "expo-keep-awake"
-      ]
-    }
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "setupFiles": [
-      "<rootDir>/node_modules/react-native/jest/setup.js",
-      "<rootDir>/test/setup.ts"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/e2e",
-      "/server"
-    ]
-  },
-  "prettier": {
-    "printWidth": 130,
-    "semi": false,
-    "singleQuote": false,
-    "trailingComma": "all"
-  },
-  "detox": {
-    "test-runner": "jest",
-    "configurations": {
-      "ios.sim.debug": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/betterrail.app",
-        "build": "xcodebuild -workspace ios/BetterRail.xcworkspace -scheme BetterRail -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -destination 'name=iPhone 11'",
-        "type": "ios.simulator",
-        "name": "iPhone 11"
-      },
-      "ios.sim.release": {
-        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/BetterRail.app",
-        "build": "xcodebuild -workspace ios/BetterRail.xcworkspace -scheme BetterRail -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -destination 'name=iPhone 11'",
-        "type": "ios.simulator",
-        "name": "iPhone 11"
-      }
-    }
-  },
-  "eslintConfig": {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "extends": [
-      "prettier",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-      "plugin:react-native/all",
-      "standard"
-    ],
-    "plugins": [
-      "@typescript-eslint",
-      "react",
-      "react-native"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "project": "./tsconfig.json"
-    },
-    "settings": {
-      "react": {
-        "pragma": "React",
-        "version": "detect"
-      }
-    },
-    "globals": {
-      "__DEV__": false,
-      "jasmine": false,
-      "beforeAll": false,
-      "afterAll": false,
-      "beforeEach": false,
-      "afterEach": false,
-      "test": false,
-      "expect": false,
-      "describe": false,
-      "jest": false,
-      "it": false
-    },
-    "rules": {
-      "@typescript-eslint/ban-ts-ignore": 0,
-      "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/explicit-member-accessibility": 0,
-      "@typescript-eslint/explicit-module-boundary-types": 0,
-      "@typescript-eslint/indent": 0,
-      "@typescript-eslint/member-delimiter-style": 0,
-      "@typescript-eslint/no-empty-interface": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/no-object-literal-type-assertion": 0,
-      "@typescript-eslint/no-var-requires": 0,
-      "comma-dangle": 0,
-      "multiline-ternary": 0,
-      "no-undef": 0,
-      "no-unused-vars": 0,
-      "no-use-before-define": "off",
-      "quotes": 0,
-      "react-native/no-raw-text": 0,
-      "react/no-unescaped-entities": 0,
-      "react-native/split-platform-components": 0,
-      "react/prop-types": "off",
-      "space-before-function-paren": 0
-    }
+    "@raycast/eslint-config": "1.0.5",
+    "@types/node": "18.8.3",
+    "@types/react": "18.0.9",
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.5.1",
+    "react-async": "^10.0.1",
+    "typescript": "^4.4.3"
   }
 }
